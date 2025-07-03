@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            margin: auto;
+            width: 60%;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        a {
+            display: inline-block;
+            margin: 15px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Home Page!</h1>
+        
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }} 👋</p>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <p>You are not logged in.</p>
+           <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Sign Up</a>
+        {% endif %}
+    </div>
+</body>
+</html>

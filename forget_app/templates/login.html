@@ -1,0 +1,71 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% block content %}
+<style>
+    .form-container {
+        background: white;
+        padding:40px 50px;
+        margin: 50px auto;
+        width: 40%;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 25px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .message {
+        color: red;
+        margin-top: 15px;
+    }
+
+   
+    p,a {
+        margin-top: 15px;
+        color: #3498db;
+        text-decoration: none;
+
+    }
+    .forget_pass {
+        display: block;
+        text-align: right;
+        margin: 40px 0px
+        color: #3498db;
+        text-decoration: none;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" id="username" placeholder="Username" required><br>
+        <input type="password" name="password" id="password" placeholder="Password" required><br>
+        <a href="{% url 'password_reset' %}" class="forget_pass">Forgot Password?</a>
+        <button type="submit">Login</button>
+    </form>
+
+    {% for message in messages %}   
+        <p class="message">{{ message }}</p>
+    {% endfor %}
+    
+    <p>Don't have an account?<a href="{% url 'register' %}">Register now</a></p> 
+</div>
+{% endblock %}
